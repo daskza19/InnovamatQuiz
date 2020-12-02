@@ -25,31 +25,37 @@ public class FuncionamentBoto : MonoBehaviour
         if (i_boto != null) i_boto.color = ColorNormal;
     }
 
-    public void ActualitzarColorBoto()
+    public void ActualitzarColorBoto(bool saltar=true)
     {
-        if (esLaCorrecta == true)
+        if (gameLoop.potContestar == true || saltar == true)
         {
-            if (i_boto != null) i_boto.color = ColorEncertat;
-        }
-        else if (esLaCorrecta == false)
-        {
-            if (i_boto != null) i_boto.color = ColorFallo;
+            if (esLaCorrecta == true)
+            {
+                if (i_boto != null) i_boto.color = ColorEncertat;
+            }
+            else if (esLaCorrecta == false)
+            {
+                if (i_boto != null) i_boto.color = ColorFallo;
+            }
         }
     }
 
     public void CheckResposta()
     {
-        if (esLaCorrecta == false)
+        if (gameLoop.potContestar == true)
         {
-            gameLoop.errorsTemporals++;
-            if (gameLoop.errorsTemporals >= 2)
+            if (esLaCorrecta == false)
             {
-                gameLoop.CanviarDades(false);
+                gameLoop.errorsTemporals++;
+                if (gameLoop.errorsTemporals >= 2)
+                {
+                    StartCoroutine(gameLoop.CanviarDades(false));
+                }
             }
-        }
-        else if (esLaCorrecta == true)
-        {
-            gameLoop.CanviarDades(true);
+            else if (esLaCorrecta == true)
+            {
+                StartCoroutine(gameLoop.CanviarDades(true));
+            }
         }
     }
 }
