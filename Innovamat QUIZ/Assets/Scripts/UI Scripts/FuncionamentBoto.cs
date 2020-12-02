@@ -27,7 +27,8 @@ public class FuncionamentBoto : MonoBehaviour
 
     public void ActualitzarColorBoto(bool saltar=true)
     {
-        if (gameLoop.potContestar == true || saltar == true)
+        if (gameLoop.potContestar
+            == true || saltar == true)
         {
             if (esLaCorrecta == true)
             {

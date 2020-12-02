@@ -9,15 +9,17 @@ public class GameLoop : MonoBehaviour
     public GameObject []buttonRespostes;
     public Text titolQuanRespostes;
     public Text titolEnunciat;
-    public Text titolPreviaEnunciat;
     public Text numeroAcertades;
     public Text numeroFallades;
+    public Text numeroNivell;
 
     [Header("Dades Temporals")]
     public bool potContestar = false;
     public int errorsTemporals = 0;
     public int anteriorNumero = 0;
     public int actualNumero = 0;
+    [Range(1,3)]
+    public int nivell = 0;
 
     [Header("Dades Totals")]
     public int acertsTotals = 0;
@@ -28,6 +30,7 @@ public class GameLoop : MonoBehaviour
     public Animator APantallaPreguntes;
     public Animator APantallaEnunciat;
     public Animator APantallaMenu;
+    public Animator APantallaNivells;
 
     private Diccionaris diccionaris;
 
@@ -36,24 +39,86 @@ public class GameLoop : MonoBehaviour
     {
         diccionaris = GetComponent<Diccionaris>();
 
-        UpdateUIAcertadesFallades();
+        acertsTotals = 0;
+        errorsTotals = 0;
+
+        UpdateUIAcceptadesFalladesNivell();
+        APantallaMenu.SetBool("Entrant", true);
+    }
+
+    //Funció per passar del menu a la pantalla de selecció de nivell
+    public void PlayNivell()
+    {
+        StartCoroutine(MainMenuToNivell());
+    }
+
+    //Rutina que s'utilitza dintre de la funcio PlayNivell per organitzar les animacions de canvi de pantalla
+    IEnumerator MainMenuToNivell()
+    {
+        APantallaMenu.SetBool("Entrant", false);
+        APantallaMenu.SetBool("Sortint", true);
+        yield return new WaitForSeconds(2);
+        APantallaMenu.SetBool("Sortint", false);
+        APantallaNivells.SetBool("Entrant", true);
+        yield return new WaitForSeconds(3);
+        potContestar = true;
+    }
+
+    //Funció per passar de la pantalla de nivell a la del enunciat de la pregunta
+    public void NivellToEnunciat()
+    {
+        if (potContestar == true)
+        {
+            StartCoroutine(C_NivellToEnunciat());
+        }
+    }
+
+    //Rutina que s'utilitza dintre de la funcio NivellToEnunciat per organitzar les animacions de canvi de pantalla
+    IEnumerator C_NivellToEnunciat()
+    {
+        potContestar = false;
+        APantallaNivells.SetBool("Entrant", false);
+        APantallaNivells.SetBool("Sortint", true);
+        yield return new WaitForSeconds(2);
+        APantallaNivells.SetBool("Sortint", false);
+
         StartCoroutine(SetupEnunciat());
+    }
+
+    public void TornarAMenuPrincipal()
+    {
+        if (potContestar == true)
+        {
+            potContestar = false;
+            StartCoroutine(PreguntesToMainMenu());
+        }
+    }
+
+    IEnumerator PreguntesToMainMenu()
+    {
+        APantallaPreguntes.SetBool("Sortint", true);
+        yield return new WaitForSeconds(2);
+        APantallaPreguntes.SetBool("Sortint", false);
+        APantallaMenu.SetBool("Entrant", true);
+
+        yield return new WaitForSeconds(2);
+        potContestar = true;
     }
 
     IEnumerator SetupEnunciat()
     {
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < buttonRespostes.Length; i++)
         {
             buttonRespostes[i].GetComponent<FuncionamentBoto>().ResetNormalColor();
         }
         PosarNousValorsUI();
-        yield return new WaitForSeconds(2);
         APantallaEnunciat.SetBool("Entrant", true);
         yield return new WaitForSeconds(2);
         APantallaEnunciat.SetBool("Entrant", false);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         APantallaEnunciat.SetBool("Sortint", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         APantallaEnunciat.SetBool("Sortint", false);
         StartCoroutine(SetupNovaPregunta());
     }
@@ -87,18 +152,18 @@ public class GameLoop : MonoBehaviour
         if (fetBe == true)
         {
             acertsTotals++;
-            UpdateUIAcertadesFallades();
+            UpdateUIAcceptadesFalladesNivell();
         }
         else if (fetBe == false)
         {
             errorsTotals++;
-            UpdateUIAcertadesFallades();
+            UpdateUIAcceptadesFalladesNivell();
             EnsenyarTotesRespostes();
         }
 
         APantallaPreguntes.SetBool("Sortint", true);
         //Actualitzem els contadors de la UI
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         APantallaPreguntes.SetBool("Sortint", false);
 
         //Tornem a començar la rutina
@@ -114,24 +179,27 @@ public class GameLoop : MonoBehaviour
         }
     }
 
-    void UpdateUIAcertadesFallades()
+    void UpdateUIAcceptadesFalladesNivell()
     {
         numeroAcertades.text = acertsTotals.ToString();
         numeroFallades.text = errorsTotals.ToString();
+        numeroNivell.text = nivell.ToString();
     }
 
     void PosarNousValorsUI()
     {
         anteriorNumero = actualNumero;
+        Dictionary<int, string> diccionariUtilitzat = GetActualDiccionari();
+
         //Primer calculem quin dels elements del diccionari anem a mostrar, fem un random entre el 0 i el maxim valor
         while (actualNumero == anteriorNumero)
         {
-            actualNumero = Random.Range(0, diccionaris.d_primernivell.Count);
+            actualNumero = Random.Range(0, diccionariUtilitzat.Count);
         }
-        titolQuanRespostes.text = diccionaris.d_primernivell[actualNumero].ToString();
-        titolEnunciat.text = diccionaris.d_primernivell[actualNumero].ToString();
+        titolQuanRespostes.text = diccionariUtilitzat[actualNumero].ToString();
+        titolEnunciat.text = diccionariUtilitzat[actualNumero].ToString();
 
-        int posicioVerdadera = Random.Range(0, 2);
+        int posicioVerdadera = Random.Range(0, 3);
 
         //Fem el cas per si la resposta correcta es troba a la primera posició
         if (posicioVerdadera == 0)
@@ -144,7 +212,7 @@ public class GameLoop : MonoBehaviour
             int segonnombre = actualNumero;
             while (segonnombre == actualNumero)
             {
-                segonnombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                segonnombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[1].GetComponentInChildren<Text>().text = segonnombre.ToString();
@@ -154,7 +222,7 @@ public class GameLoop : MonoBehaviour
             int tercernombre = actualNumero;
             while (tercernombre == actualNumero || tercernombre == segonnombre)
             {
-                tercernombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                tercernombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[2].GetComponentInChildren<Text>().text = tercernombre.ToString();
@@ -172,7 +240,7 @@ public class GameLoop : MonoBehaviour
             int segonnombre = actualNumero;
             while (segonnombre == actualNumero)
             {
-                segonnombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                segonnombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[0].GetComponentInChildren<Text>().text = segonnombre.ToString();
@@ -182,7 +250,7 @@ public class GameLoop : MonoBehaviour
             int tercernombre = actualNumero;
             while (tercernombre == actualNumero || tercernombre == segonnombre)
             {
-                tercernombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                tercernombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[2].GetComponentInChildren<Text>().text = tercernombre.ToString();
@@ -200,7 +268,7 @@ public class GameLoop : MonoBehaviour
             int segonnombre = actualNumero;
             while (segonnombre == actualNumero)
             {
-                segonnombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                segonnombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[0].GetComponentInChildren<Text>().text = segonnombre.ToString();
@@ -210,11 +278,42 @@ public class GameLoop : MonoBehaviour
             int tercernombre = actualNumero;
             while (tercernombre == actualNumero || tercernombre == segonnombre)
             {
-                tercernombre = Random.Range(0, diccionaris.d_primernivell.Count);
+                tercernombre = Random.Range(0, diccionariUtilitzat.Count);
             }
 
             buttonRespostes[1].GetComponentInChildren<Text>().text = tercernombre.ToString();
             buttonRespostes[1].GetComponent<FuncionamentBoto>().esLaCorrecta = false;
         }
+    }
+
+    public void ActualitzarNivell(int _nounivell)
+    {
+        if (potContestar == true)
+        {
+            nivell = _nounivell;
+            UpdateUIAcceptadesFalladesNivell();
+        }
+    }
+
+    Dictionary<int, string> GetActualDiccionari()
+    {
+        Dictionary<int, string> _diccionari = new Dictionary<int, string>();
+
+        switch (nivell)
+        {
+            case (1):
+                _diccionari = diccionaris.d_primernivell;
+                break;
+            case (2):
+                _diccionari = diccionaris.d_segonnivell;
+                break;
+            case (3):
+                _diccionari = diccionaris.d_tercernivell;
+                break;
+            default:
+                _diccionari = diccionaris.d_primernivell;
+                break;
+        }
+        return _diccionari;
     }
 }

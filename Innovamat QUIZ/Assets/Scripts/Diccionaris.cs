@@ -5,10 +5,13 @@ using UnityEngine;
 public class Diccionaris : MonoBehaviour
 {
     public Dictionary<int, string> d_primernivell = new Dictionary<int, string>();
+    public Dictionary<int, string> d_segonnivell = new Dictionary<int, string>();
+    public Dictionary<int, string> d_tercernivell = new Dictionary<int, string>();
 
     // Start is called before the first frame update
     void Awake()
     {
+        //Inicialitzem el diccionari del primer nivell
         d_primernivell.Add(0, "zero");
         d_primernivell.Add(1, "un");
         d_primernivell.Add(2, "dos");
@@ -19,11 +22,159 @@ public class Diccionaris : MonoBehaviour
         d_primernivell.Add(7, "set");
         d_primernivell.Add(8, "vuit");
         d_primernivell.Add(9, "nou");
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //Inicialitzem el diccionari del segon nivell
+        d_segonnivell.Add(0, "zero");
+        d_segonnivell.Add(1, "un");
+        d_segonnivell.Add(2, "dos");
+        d_segonnivell.Add(3, "tres");
+        d_segonnivell.Add(4, "quatre");
+        d_segonnivell.Add(5, "cinc");
+        d_segonnivell.Add(6, "sis");
+        d_segonnivell.Add(7, "set");
+        d_segonnivell.Add(8, "vuit");
+        d_segonnivell.Add(9, "nou");
+        d_segonnivell.Add(10, "deu");
+        d_segonnivell.Add(11, "onze");
+        d_segonnivell.Add(12, "dotze");
+        d_segonnivell.Add(13, "tretze");
+        d_segonnivell.Add(14, "catorze");
+        d_segonnivell.Add(15, "quinze");
+        d_segonnivell.Add(16, "setze");
+        d_segonnivell.Add(17, "disset");
+        d_segonnivell.Add(18, "divuit");
+        d_segonnivell.Add(19, "dinou");
+        d_segonnivell.Add(20, "vint");
+        d_segonnivell.Add(21, "vint-i-u");
+        d_segonnivell.Add(22, "vint-i-dos");
+        d_segonnivell.Add(23, "vint-i-tres");
+        d_segonnivell.Add(24, "vint-i-quatre");
+        d_segonnivell.Add(25, "vint-i-cinc");
+        d_segonnivell.Add(26, "vint-i-sis");
+        d_segonnivell.Add(27, "vint-i-set");
+        d_segonnivell.Add(28, "vint-i-vuit");
+        d_segonnivell.Add(29, "vint-i-nou");
+        d_segonnivell.Add(30, "trenta");
+        d_segonnivell.Add(31, "trenta-u");
+        d_segonnivell.Add(32, "trenta-dos");
+        d_segonnivell.Add(33, "trenta-tres");
+        d_segonnivell.Add(34, "trenta-quatre");
+        d_segonnivell.Add(35, "trenta-cinc");
+        d_segonnivell.Add(36, "trenta-sis");
+        d_segonnivell.Add(37, "trenta-set");
+        d_segonnivell.Add(38, "trenta-vuit");
+        d_segonnivell.Add(39, "trenta-nou");
+        d_segonnivell.Add(40, "quaranta");
+        d_segonnivell.Add(41, "quaranta-u");
+        d_segonnivell.Add(42, "quaranta-dos");
+        d_segonnivell.Add(43, "quaranta-tres");
+        d_segonnivell.Add(44, "quaranta-quatre");
+        d_segonnivell.Add(45, "quaranta-cinc");
+        d_segonnivell.Add(46, "quaranta-sis");
+        d_segonnivell.Add(47, "quaranta-set");
+        d_segonnivell.Add(48, "quaranta-vuit");
+        d_segonnivell.Add(49, "quaranta-nou");
+
+        //Inicialitzem el diccionari del tercer nivell
+        d_tercernivell.Add(0, "zero");
+        d_tercernivell.Add(1, "un");
+        d_tercernivell.Add(2, "dos");
+        d_tercernivell.Add(3, "tres");
+        d_tercernivell.Add(4, "quatre");
+        d_tercernivell.Add(5, "cinc");
+        d_tercernivell.Add(6, "sis");
+        d_tercernivell.Add(7, "set");
+        d_tercernivell.Add(8, "vuit");
+        d_tercernivell.Add(9, "nou");
+        d_tercernivell.Add(10, "deu");
+        d_tercernivell.Add(11, "onze");
+        d_tercernivell.Add(12, "dotze");
+        d_tercernivell.Add(13, "tretze");
+        d_tercernivell.Add(14, "catorze");
+        d_tercernivell.Add(15, "quinze");
+        d_tercernivell.Add(16, "setze");
+        d_tercernivell.Add(17, "disset");
+        d_tercernivell.Add(18, "divuit");
+        d_tercernivell.Add(19, "dinou");
+        d_tercernivell.Add(20, "vint");
+        d_tercernivell.Add(21, "vint-i-u");
+        d_tercernivell.Add(22, "vint-i-dos");
+        d_tercernivell.Add(23, "vint-i-tres");
+        d_tercernivell.Add(24, "vint-i-quatre");
+        d_tercernivell.Add(25, "vint-i-cinc");
+        d_tercernivell.Add(26, "vint-i-sis");
+        d_tercernivell.Add(27, "vint-i-set");
+        d_tercernivell.Add(28, "vint-i-vuit");
+        d_tercernivell.Add(29, "vint-i-nou");
+        d_tercernivell.Add(30, "trenta");
+        d_tercernivell.Add(31, "trenta-u");
+        d_tercernivell.Add(32, "trenta-dos");
+        d_tercernivell.Add(33, "trenta-tres");
+        d_tercernivell.Add(34, "trenta-quatre");
+        d_tercernivell.Add(35, "trenta-cinc");
+        d_tercernivell.Add(36, "trenta-sis");
+        d_tercernivell.Add(37, "trenta-set");
+        d_tercernivell.Add(38, "trenta-vuit");
+        d_tercernivell.Add(39, "trenta-nou");
+        d_tercernivell.Add(40, "quaranta");
+        d_tercernivell.Add(41, "quaranta-u");
+        d_tercernivell.Add(42, "quaranta-dos");
+        d_tercernivell.Add(43, "quaranta-tres");
+        d_tercernivell.Add(44, "quaranta-quatre");
+        d_tercernivell.Add(45, "quaranta-cinc");
+        d_tercernivell.Add(46, "quaranta-sis");
+        d_tercernivell.Add(47, "quaranta-set");
+        d_tercernivell.Add(48, "quaranta-vuit");
+        d_tercernivell.Add(49, "quaranta-nou");
+        d_tercernivell.Add(50, "cinquanta");
+        d_tercernivell.Add(51, "cinquanta-u");
+        d_tercernivell.Add(52, "cinquanta-dos");
+        d_tercernivell.Add(53, "cinquanta-tres");
+        d_tercernivell.Add(54, "cinquanta-quatre");
+        d_tercernivell.Add(55, "cinquanta-cinc");
+        d_tercernivell.Add(56, "cinquanta-sis");
+        d_tercernivell.Add(57, "cinquanta-set");
+        d_tercernivell.Add(58, "cinquanta-vuit");
+        d_tercernivell.Add(59, "cinquanta-nou");
+        d_tercernivell.Add(60, "seixanta");
+        d_tercernivell.Add(61, "seixanta-u");
+        d_tercernivell.Add(62, "seixanta-dos");
+        d_tercernivell.Add(63, "seixanta-tres");
+        d_tercernivell.Add(64, "seixanta-quatre");
+        d_tercernivell.Add(65, "seixanta-cinc");
+        d_tercernivell.Add(66, "seixanta-sis");
+        d_tercernivell.Add(67, "seixanta-set");
+        d_tercernivell.Add(68, "seixanta-vuit");
+        d_tercernivell.Add(69, "seixanta-nou");
+        d_tercernivell.Add(70, "setanta");
+        d_tercernivell.Add(71, "setanta-u");
+        d_tercernivell.Add(72, "setanta-dos");
+        d_tercernivell.Add(73, "setanta-tres");
+        d_tercernivell.Add(74, "setanta-quatre");
+        d_tercernivell.Add(75, "setanta-cinc");
+        d_tercernivell.Add(76, "setanta-sis");
+        d_tercernivell.Add(77, "setanta-set");
+        d_tercernivell.Add(78, "setanta-vuit");
+        d_tercernivell.Add(79, "setanta-nou");
+        d_tercernivell.Add(80, "vuitanta");
+        d_tercernivell.Add(81, "vuitanta-u");
+        d_tercernivell.Add(82, "vuitanta-dos");
+        d_tercernivell.Add(83, "vuitanta-tres");
+        d_tercernivell.Add(84, "vuitanta-quatre");
+        d_tercernivell.Add(85, "vuitanta-cinc");
+        d_tercernivell.Add(86, "vuitanta-sis");
+        d_tercernivell.Add(87, "vuitanta-set");
+        d_tercernivell.Add(88, "vuitanta-vuit");
+        d_tercernivell.Add(89, "vuitanta-nou");
+        d_tercernivell.Add(90, "noranta");
+        d_tercernivell.Add(91, "noranta-u");
+        d_tercernivell.Add(92, "noranta-dos");
+        d_tercernivell.Add(93, "noranta-tres");
+        d_tercernivell.Add(94, "noranta-quatre");
+        d_tercernivell.Add(95, "noranta-cinc");
+        d_tercernivell.Add(96, "noranta-sis");
+        d_tercernivell.Add(97, "noranta-set");
+        d_tercernivell.Add(98, "noranta-vuit");
+        d_tercernivell.Add(99, "noranta-nou");
     }
 }
