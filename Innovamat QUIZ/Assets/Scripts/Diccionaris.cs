@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Diccionaris : MonoBehaviour
 {
+    //Creem els tres diccionaris disponibles, un de cada nivell
     public Dictionary<int, string> d_primernivell = new Dictionary<int, string>();
     public Dictionary<int, string> d_segonnivell = new Dictionary<int, string>();
     public Dictionary<int, string> d_tercernivell = new Dictionary<int, string>();
 
-    // Start is called before the first frame update
     void Awake()
     {
         //Inicialitzem el diccionari del primer nivell
@@ -45,7 +45,7 @@ public class Diccionaris : MonoBehaviour
         d_segonnivell.Add(18, "divuit");
         d_segonnivell.Add(19, "dinou");
         d_segonnivell.Add(20, "vint");
-        d_segonnivell.Add(21, "vint-i-u");
+        d_segonnivell.Add(21, "vint-i-un");
         d_segonnivell.Add(22, "vint-i-dos");
         d_segonnivell.Add(23, "vint-i-tres");
         d_segonnivell.Add(24, "vint-i-quatre");
@@ -55,7 +55,7 @@ public class Diccionaris : MonoBehaviour
         d_segonnivell.Add(28, "vint-i-vuit");
         d_segonnivell.Add(29, "vint-i-nou");
         d_segonnivell.Add(30, "trenta");
-        d_segonnivell.Add(31, "trenta-u");
+        d_segonnivell.Add(31, "trenta-un");
         d_segonnivell.Add(32, "trenta-dos");
         d_segonnivell.Add(33, "trenta-tres");
         d_segonnivell.Add(34, "trenta-quatre");
@@ -65,7 +65,7 @@ public class Diccionaris : MonoBehaviour
         d_segonnivell.Add(38, "trenta-vuit");
         d_segonnivell.Add(39, "trenta-nou");
         d_segonnivell.Add(40, "quaranta");
-        d_segonnivell.Add(41, "quaranta-u");
+        d_segonnivell.Add(41, "quaranta-un");
         d_segonnivell.Add(42, "quaranta-dos");
         d_segonnivell.Add(43, "quaranta-tres");
         d_segonnivell.Add(44, "quaranta-quatre");
@@ -97,7 +97,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(18, "divuit");
         d_tercernivell.Add(19, "dinou");
         d_tercernivell.Add(20, "vint");
-        d_tercernivell.Add(21, "vint-i-u");
+        d_tercernivell.Add(21, "vint-i-un");
         d_tercernivell.Add(22, "vint-i-dos");
         d_tercernivell.Add(23, "vint-i-tres");
         d_tercernivell.Add(24, "vint-i-quatre");
@@ -107,7 +107,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(28, "vint-i-vuit");
         d_tercernivell.Add(29, "vint-i-nou");
         d_tercernivell.Add(30, "trenta");
-        d_tercernivell.Add(31, "trenta-u");
+        d_tercernivell.Add(31, "trenta-un");
         d_tercernivell.Add(32, "trenta-dos");
         d_tercernivell.Add(33, "trenta-tres");
         d_tercernivell.Add(34, "trenta-quatre");
@@ -117,7 +117,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(38, "trenta-vuit");
         d_tercernivell.Add(39, "trenta-nou");
         d_tercernivell.Add(40, "quaranta");
-        d_tercernivell.Add(41, "quaranta-u");
+        d_tercernivell.Add(41, "quaranta-un");
         d_tercernivell.Add(42, "quaranta-dos");
         d_tercernivell.Add(43, "quaranta-tres");
         d_tercernivell.Add(44, "quaranta-quatre");
@@ -127,7 +127,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(48, "quaranta-vuit");
         d_tercernivell.Add(49, "quaranta-nou");
         d_tercernivell.Add(50, "cinquanta");
-        d_tercernivell.Add(51, "cinquanta-u");
+        d_tercernivell.Add(51, "cinquanta-un");
         d_tercernivell.Add(52, "cinquanta-dos");
         d_tercernivell.Add(53, "cinquanta-tres");
         d_tercernivell.Add(54, "cinquanta-quatre");
@@ -137,7 +137,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(58, "cinquanta-vuit");
         d_tercernivell.Add(59, "cinquanta-nou");
         d_tercernivell.Add(60, "seixanta");
-        d_tercernivell.Add(61, "seixanta-u");
+        d_tercernivell.Add(61, "seixanta-un");
         d_tercernivell.Add(62, "seixanta-dos");
         d_tercernivell.Add(63, "seixanta-tres");
         d_tercernivell.Add(64, "seixanta-quatre");
@@ -147,7 +147,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(68, "seixanta-vuit");
         d_tercernivell.Add(69, "seixanta-nou");
         d_tercernivell.Add(70, "setanta");
-        d_tercernivell.Add(71, "setanta-u");
+        d_tercernivell.Add(71, "setanta-un");
         d_tercernivell.Add(72, "setanta-dos");
         d_tercernivell.Add(73, "setanta-tres");
         d_tercernivell.Add(74, "setanta-quatre");
@@ -157,7 +157,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(78, "setanta-vuit");
         d_tercernivell.Add(79, "setanta-nou");
         d_tercernivell.Add(80, "vuitanta");
-        d_tercernivell.Add(81, "vuitanta-u");
+        d_tercernivell.Add(81, "vuitanta-un");
         d_tercernivell.Add(82, "vuitanta-dos");
         d_tercernivell.Add(83, "vuitanta-tres");
         d_tercernivell.Add(84, "vuitanta-quatre");
@@ -167,7 +167,7 @@ public class Diccionaris : MonoBehaviour
         d_tercernivell.Add(88, "vuitanta-vuit");
         d_tercernivell.Add(89, "vuitanta-nou");
         d_tercernivell.Add(90, "noranta");
-        d_tercernivell.Add(91, "noranta-u");
+        d_tercernivell.Add(91, "noranta-un");
         d_tercernivell.Add(92, "noranta-dos");
         d_tercernivell.Add(93, "noranta-tres");
         d_tercernivell.Add(94, "noranta-quatre");

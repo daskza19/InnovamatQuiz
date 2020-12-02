@@ -1720,7 +1720,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1458769015}
-        m_MethodName: TornarAMenuPrincipal
+        m_MethodName: PreguntesToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1933,7 +1933,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1458769015}
-        m_MethodName: PlayNivell
+        m_MethodName: MainMenuToNivell
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2336,8 +2336,8 @@ MonoBehaviour:
   anteriorNumero: 0
   actualNumero: 0
   nivell: 2
-  acertsTotals: 0
-  errorsTotals: 0
+  encertsTotals: 0
+  erradesTotals: 0
   APantallaPreguntes: {fileID: 1735109449}
   APantallaEnunciat: {fileID: 62998582}
   APantallaMenu: {fileID: 1615610157}
